@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="container">
+    <div class="pull-right">
+      <label for="sort"><strong>Sort by</strong></label>
+      <select class="form-control pull-right" id="sort" ng-change="$ctrl.sort()" ng-model="$ctrl.sortType">
+            <option value="id">ID</option>
+            <option value="price">Price</option>
+            <option value="created_at">Date</option>
+      </select>
+
+    </div>
+
+  <button class="pull-left-bottom btn" ng-click="showPostForm = !showPostForm">Make a New Classified!</button>
+
+  </div>
+
+  <div class="col-md-7" ng-show="showPostForm">
+    <form name="newClassifiedForm" ng-submit="$ctrl.postNewClassified(vm.classified)">
+      <p>
+        Title: <input id="title" ng-model="vm.classified.title">
+      </p>
+      <p>
+        Description: <input id="description" ng-model="vm.classified.description">
+      </p>
+      <p>
+        Price: <input id="price" ng-model="vm.classified.price">
+      </p>
+      <p>
+        Image Url: <input id="item_image" ng-model="vm.classified.item_image">
+      </p>
+      <p>
+        <button class="btn" type="submit" ng-click = "showPostForm = !showPostForm">Post Classified!</button>
+      </p>
+    </form>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Image</th>
+      </tr>
+    </thead>
+
+  <!-- | orderBy: $ctrl.sortType:$ctrl.reverse | filter:$ctrl.searchText" -->
+
+    <tbody class="classifiedGrid" ng-repeat="classified in $ctrl.classifieds | orderBy: $ctrl.sortType:$ctrl.sort()">
+      <tr ng-show="!showEditForm">
+        <td><b>{{classified.id}}<b></td>
+        <td>{{classified.title}}</td>
+        <td>{{classified.description}}</td>
+        <td>${{classified.price}}</td>
+        <td>
+          <img class="classifiedPicture" src="{{classified.item_image}}" alt="image">
+        </td>
+        <td>
+          <a href="#" ng-click="showEditForm = !showEditForm">edit</a>
+          <br>
+          <a href="#" ng-click="$ctrl.deleteClassified(classified)">delete</a>
+        </td>
+      </tr>
+
+      <tr ng-show="showEditForm" >
+
+        <form name="editClassifiedForm">
+          <td ng-model="classifieds.id"><b>{{classified.id}}<b></td>
+          <td><input id="title" ng-model="classified.title"></td>
+          <td><input id="description" ng-model="classified.description"></td>
+          <td><input id="price" ng-model="classified.price"></td>
+          <td><input id="price" ng-model="classified.item_image"></td>
+          <td><button class="btn" type="submit" ng-click="$ctrl.editClassified(classified); showEditForm = !showEditForm">Submit Change</button> </td>
+        </form>
+
+
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,17 @@
+th, td{
+  border: 1px black solid;
+  margin: 5px;
+  text-align: center;
+  min-width: 50px;
+}
+th{
+  background-color: lightblue;
+}
+.classifiedPicture{
+  width: 200px;
+}
+.logo{
+  text-align: center;
+  font-style: oblique;
+  border-bottom: 2px black solid;
+}
