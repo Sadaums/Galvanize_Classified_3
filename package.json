@@ -7,7 +7,7 @@
     "test": "mocha",
     "heroku-postbuild": "knex migrate:rollback; knex migrate:latest; knex seed:run",
     "nodemon": "node /server/server.js"},
-  {"keywords": [],
+  "keywords": [],
   "author": "",
   "description": "",
   "dependencies": {
